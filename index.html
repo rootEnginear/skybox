@@ -59,29 +59,25 @@
       background: linear-gradient(#fff, #6dd5fa, #2980b9);
     }
 
-    .text {
-      background: transparent;
-      border: none;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size: 30rem;
+    .i {
+      position: absolute;
+      top: 50%;
+      left: 50%;
     }
 
-    .t-front {
-      transform: translateZ(-10px);
-      padding-top: 15rem;
+    .i-front {
+      transform: translate3d(-80%, -20%, -10px);
+      width: 60vw;
     }
 
-    .t-mid {
-      transform: translateZ(-20px);
+    .i-mid {
+      transform: translate3d(-50%, -50%, -20px);
+      width: 70vw;
     }
 
-    .t-back {
-      transform: translateZ(-30px);
-      padding-bottom: 15rem;
+    .i-back {
+      transform: translate3d(-0%, -100%, -30px);
+      width: 50vw;
     }
   </style>
 </head>
@@ -92,9 +88,9 @@
   <div class="top side"></div>
   <div class="bottom side"></div>
   <div class="back side"></div>
-  <div class="text t-back side">&nbsp;&nbsp;&nbsp;☁&#xFE0F;</div>
-  <div class="text t-mid side">🌞&#xFE0F;</div>
-  <div class="text t-front side">☁&#xFE0F;&nbsp;&nbsp;&nbsp;</div>
+  <img src="cloud.png" alt="" class="i-back i">
+  <img src="sun.png" alt="" class="i-mid i">
+  <img src="cloud.png" alt="" class="i-front i">
 
   <script>
     let root = document.documentElement;
