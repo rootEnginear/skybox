@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⛅ Skybox</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      padding: 0;
+      margin: 0;
+
+      perspective: 100px;
+      perspective-origin: var(--lr) var(--fb);
+      transform-style: preserve-3d;
+
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+
+      background: linear-gradient(#fff, #6dd5fa, #2980b9);
+    }
+
+    .side {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+
+    .left {
+      transform: rotateY(-90deg) translateZ(50vw);
+      background: linear-gradient(#fff, #6dd5fa, #2980b9);
+    }
+
+    .right {
+      transform: rotateY(90deg) translateZ(50vw);
+      background: linear-gradient(#fff, #6dd5fa, #2980b9);
+    }
+
+    .top {
+      transform: rotateX(90deg) translateZ(50vh);
+      background: #fff;
+    }
+
+    .bottom {
+      transform: rotateX(-90deg) translateZ(50vh);
+      background: #2980b9;
+    }
+
+    .back {
+      transform: translateZ(-40px);
+      background: linear-gradient(#fff, #6dd5fa, #2980b9);
+    }
+
+    .text {
+      background: transparent;
+      border: none;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 30rem;
+    }
+
+    .t-front {
+      transform: translateZ(-10px);
+      padding-top: 15rem;
+    }
+
+    .t-mid {
+      transform: translateZ(-20px);
+    }
+
+    .t-back {
+      transform: translateZ(-30px);
+      padding-bottom: 15rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="left side"></div>
+  <div class="right side"></div>
+  <div class="top side"></div>
+  <div class="bottom side"></div>
+  <div class="back side"></div>
+  <div class="text t-back side">&nbsp;&nbsp;&nbsp;☁&#xFE0F;</div>
+  <div class="text t-mid side">🌞&#xFE0F;</div>
+  <div class="text t-front side">☁&#xFE0F;&nbsp;&nbsp;&nbsp;</div>
+
+  <script>
+    let root = document.documentElement;
+    window.addEventListener('deviceorientation', deviceOrientationHandler, false);
+
+    function deviceOrientationHandler(eventData) {
+      let tiltLR = eventData.gamma + 90;
+      let tiltFB = eventData.beta + 90;
+
+      tiltFB = tiltFB < 0 ? tiltFB + 180 : tiltFB > 180 ? tiltFB - 180 : tiltFB
+      tiltFB = ((180 - tiltFB) * 100 / 180) + '%'
+
+      tiltLR = ((180 - tiltLR) * 100 / 180) + '%'
+
+      root.style.setProperty('--lr', tiltLR);
+      root.style.setProperty('--fb', tiltFB);
+    }
+  </script>
+</body>
+
+</html>
